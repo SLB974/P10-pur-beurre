@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    {% load static %}
+    <title>Pur Beurre</title>
+    <!-- Favicon-->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'assets/img/favicon.ico' %}"
+    />
+    <!-- Bootstrap Icons-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Fontawesome Icons-->
+    <script
+      src="https://kit.fontawesome.com/f1f3600fd5.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Scope+One"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- SimpleLightbox plugin CSS-->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css"
+      rel="stylesheet"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <!-- Personnal themes CSS -->
+    <link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css"/>
+  </head>
+  <body id="page-top">
+    <!-- Navigation-->
+    <nav
+    class="
+      navbar navbar-expand-sm
+      navbar-light
+      d-flex
+      fixed-top
+      justify-content-center
+    "
+    id="mainNav">
+
+      <div class="container container-fluid nav_container justify-content-between">
+
+
+        <div class="navbar-nav d-inline-flex flex-row align-items-center justify-content-start" style="padding-left:0.5em;">
+            <img
+              class="logo"
+              src="{% static 'assets/img/logo.png' %}"
+              title="Pur Beurre"/>
+            <a
+              class="navbar-brand"
+              href="{% url 'index' %}"
+              style="font-family: Open Sans, sans-serif;"
+              >Pur Beurre</a>
+          </div>
+        <button class="navbar-toggler navbar-toggler-right"
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle  navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <div class="navbar-nav d-none d-sm-block me-auto" style="margin-left:auto; margin-right:auto;">
+            <form
+              class="nav-link"
+              action="{% url 'product_search' %}"
+              method="GET">
+              {% csrf_token %}
+              <input
+                class="form-control form-control-sm"
+                type="text"
+                name="home_search"
+                placeholder="Rechercher"
+                maxlength="100"
+                id="home_search"
+                style="font-size:1vw"
+              />
+              <input type="submit" class="d-none" />
+            </form>
+          </div>
+          <div class="navbar-nav" style="padding-right:0.5em;">
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav ms-auto my-2 my-lg-0">
+              <a class="clickable account" href="{% url 'account' %}"
+                ><li class="nav-item">
+                  <i
+                    class="fas fa-user"
+                    title="Mon compte ({{user.username}})"
+                  ></i></li
+              ></a>
+              <a class="clickable product" href="{% url 'product_user' user.id %}"
+                ><li class="nav-item">
+                  <i class="fas fa-carrot" title="Mes produits"></i></li
+              ></a>
+              <a class="clickable logout" href="{% url 'account_logout' %}"
+                ><li class="nav-item">
+                  <i
+                    class="fa-solid fa-arrow-right-from-bracket"
+                    title="Se déconnecter"
+                  ></i></li
+                  ></a>
+                  {% if user.is_superuser %}
+                    <a class="clickable database" href="{% url 'database' %}"
+                  ><li class="nav-item">
+                    <i
+                      class="fa-solid fa-database"
+                      title="Réinitialiser database"
+                    ></i></li
+                    ></a>
+                  {% endif %} 
+            </ul>
+            {% else %}
+            <ul class="navbar-nav ms-auto my-2 my-lg-0">
+              <a class='signup' href="{% url 'signup' %}"
+                ><li class="nav-item">
+                  <i
+                    class="fa-solid fa-user-plus"
+                    title="Créer un compte"
+                  ></i></li
+              ></a>
+              <a
+                id="loginAnchor"
+                class="login"
+                href="{% url 'account_login' %}"
+                ><li class="nav-item">
+                  <i
+                    class="fa-solid fa-arrow-right-to-bracket"
+                    title="Se connecter"
+                  ></i></li
+              ></a>
+            </ul>
+            {% endif %}
+        </div>
+  
+      </nav>
+  
+      {% block banner %} {% endblock %}
+      {% block content %} {% endblock %}
+  
+      <!-- Footer-->
+      <footer>
+        <nav class="navbar fixed-bottom justify-content-around align-items-center" id="bottomNav">
+            <ul class="nav row-fluid">
+              <li class="nav-item">
+                <a class="nav-link bottom_link" href="{% url 'legal_notice' %}"
+                  >Mentions légales</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link bottom_link" href="{% url 'index' %}#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+      </div>
+
+      </nav>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SimpleLightbox plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+    <script src="{% static 'assets/js/custom_scripts.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 h-100 w-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-center">
+                        <h1 class="text-white font-weight-bold">Du gras, oui,</h1>
+                        <h1 class="text-white font-weight-bold">mais de qualité !</h1>
+                        <br/>
+                        <h2 class="text-white font-weight-bold">Trouvez un produit de substitution pour ceux que vous consommez tous les jours.</h2>
+                        <hr class="divider" />
+                    </div>
+
+                    <div class="col-lg-5 col-md-7 col-sm-8 align-self-start">
+                        <form method="GET" action="{% url 'product_search' %}">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Recherchez un produit" aria-label="search product" aria-describedby="button-addon2" name="home_search">
+                                <button class="btn btn-outline-primary" type="submit" id="buttons-addon2-primary">Rechercher</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- about-->
+        <section class="page-section" style="background-color: var(--bs-chocolat);">
+            <div class="container w-100">
+                <div class="row justify-content-between text-center align-items-top">
+                    <div class="col-lg-2">
+                        <a class="portfolio-box" href="../static/assets/img/Colette.jpg" title="Colette">
+                            <img class="rounded mx-auto d-block" src="{% static 'assets/img/thumbnails/colette_thumb.png' %}" alt="..." />
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="text-white mt-0">Colette et Remy</h2>
+                        <hr class="divider divider-light" />
+                        <p class="text-white-75 text-start"><strong>Pur Beurre</strong> est l'initiative de deux amoureux de la gastronomie française, Colette Tatou et Rémy, que vous avez déjà certainement rencontrés dans notre excellent restaurant Ratatouille.</p>
+                        <br/>
+                        <p class="text-white-75 text-start"><strong>Colette Tatou </strong>: "Nous aimons tous manger, surtout en France ! Personnellement, une baguette fraîche, du bon fromage de chèvre et un bon vin rouge me suffisent amplement. Comme tout le monde, je fais mes courses au supermarché. Mais petit à petit je me suis rendue compte, surtout lorsque nous avons ouvert le restaurant, que je pouvais remplacer les produits aseptisés que j'avais l'habitude d'acheter par de bons produits du terroir Et souvent pour le même prix !"</p>
+                        <br/>
+                        <p class="text-white-75 text-start"><strong>Rémy </strong>: "Pour ma part je me rendais déjà dans bien des magasins car j'aime beaucoup me balader, surtout dans les caves et les cuisines. Je connaissais par coeur le contenu des boutiques bio (dont je raffole) ainsi que les ingrédients de tous les aliments vendus. Lorsque Colette m'a demandé si elle pouvait remplacer son Nutella matinal par un aliment plus sain, je savais tout de suite où le trouver. L'idée de Pur Beurre était née !"</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <a class="portfolio-box" href="../static/assets/img/Remy.jpg" title="Rémy">
+                            <img class="rounded mx-auto d-block" src="{% static 'assets/img/thumbnails/remy_thumb.png' %}" alt="..." />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact-->
+        <section class="page-section" id="contact" style="background-color: var(--bs-caramel);">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">Contactez-nous !</h2>
+                <hr class="divider" />
+                <div class="row justify-content-center">
+                    <div class="col-6 text-center mb-2">
+                        <i class="fas fa-phone-alt" style="font-size: 1.5em; color:var(--bs-bonbon);" ></i>
+                        <h3>01 02 03 04 05</h3>
+                    </div>
+                    <div class="col-6 text-center mb-2">
+                        <i class="far fa-envelope" style="font-size: 1.5em; color:var(--bs-bonbon);"></i>
+                        <h3>contact@purbeurre.fr</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

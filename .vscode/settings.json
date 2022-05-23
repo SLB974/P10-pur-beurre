@@ -1,0 +1,28 @@
+{
+    "files.exclude": {
+        "**/.git": false,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/venv": false,
+        "**/.env": false,
+        "**/.venv": false,
+        "**/css/*.css.map": true,
+        "**/migrations": true,
+        "**/.pytest_cache": true,
+        "django_p8\\nutella\\static\\css/base.css": false,
+        "django_p8\\nutella\\static\\css/index.css": false
+    },
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": false,
+    "python.linting.enabled": true,
+    "python.linting.banditEnabled": false,
+    "html.autoClosingTags": true,
+    "explorerExclude.backup":null,
+    "python.linting.pylintArgs": [
+        "--disable=django-not-configured",
+        "--django-settings-module=django_p8.settings",
+    ]
+}

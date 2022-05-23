@@ -1,0 +1,88 @@
+{
+    "count": 8535,
+    "page": 1,
+    "page_count": 50,
+    "page_size": 50,
+    "products": [
+        {
+            "_id": "3019081239640",
+            "product_name_fr": "Brie",
+            "brands": "Président",
+            "nutrition_grade_fr": "b",
+            "image_front_url": "https://some_image.jpg",
+            "url":"www.some_url.com",
+            "nutriments": {
+                "carbohydrates": 0.3,
+                "energy-kcal": 109,
+                "fat": 1,
+                "proteins": 25,
+                "sodium": 0.4,
+                "fiber":1
+            }
+        },
+        {
+            "_id": "3019081239641",
+            "product_name_fr": "Bleu de Bresse",
+            "brands": "Président",
+            "nutrition_grade_fr": "b",
+            "image_front_url": "https://some_image.jpg",
+            "url":"www.some_url.com",
+            "nutriments": {
+                "carbohydrates": 0.3,
+                "energy-kcal": 109,
+                "fat": 1,
+                "proteins": 25,
+                "sodium": 0.4,
+                "fiber":1
+            }
+        },
+        {
+            "_id": "3019081239642",
+            "product_name_fr": "Coulommiers",
+            "brands": "Président",
+            "nutrition_grade_fr": "b",
+            "image_front_url": "https://some_image.jpg",
+            "url":"www.some_url.com",
+            "nutriments": {
+                "carbohydrates": 0.6,
+                "energy-kcal": 109,
+                "fat": 1,
+                "proteins": 25,
+                "sodium": 0.4,
+                "fiber":1
+            }
+        },
+        {
+            "_id": "3019081239643",
+            "product_name_fr": "Camembert de campagne",
+            "brands": "Président",
+            "nutrition_grade_fr": "b",
+            "image_front_url": "https://some_image.jpg",
+            "url":"www.some_url.com",
+            "nutriments": {
+                "carbohydrates": 0,
+                "energy-kcal": 109,
+                "fat": 1,
+                "proteins": 25,
+                "sodium": 0.4,
+                "fiber":1
+            }
+        },
+        {
+            "_id": "3019081239644",
+            "product_name_fr": "Roquefort",
+            "brands": "Président",
+            "nutrition_grade_fr": "b",
+            "image_front_url": "https://some_image.jpg",
+            "url":"www.some_url.com",
+            "nutriments": {
+                "carbohydrates": 0,
+                "energy-kcal": 109,
+                "fat": 1,
+                "proteins": 25,
+                "sodium": 0.4,
+                "fiber":1
+            }
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{% extends "base.html"  %}
+
+{% block content %}
+<div class="container-fluid legal_top text-center">
+    <div class="row-fluid">
+        <div class="col">
+            <h3>Mentions Légales</h3>
+            <hr class="divider"/>
+        </div>
+    </div>
+    <br/>
+    <div class="row-fluid">
+        <div class="col">
+            <p class="lead">Les icones de ce site sont gracieusement fournis par <a class="legal" href="https://www.fontawesome.com" target="_blank">fontawesome.com</a>.</p>
+        </div>
+    </div>
+    <hr class="divider"/>
+
+    <div class="row-fluid">
+        <div class="col">
+            <p class="lead">Les visuels du film Ratatouille appartiennent à la <a class="legal" href="https://disney.fr/" target="_blank">Walt Disney Company</a>.</p>
+        </div>
+    </div>
+    <hr class="divider"/>
+    
+    <div class="row-fluid">
+        <div class="col">
+            <p class="lead">Le template de base de ce site est fourni par <a class="legal" href="https://startbootstrap.com/theme/creative" target="_blank">Bootstrap</a>.</p>
+        </div>
+    </div>
+    <hr class="divider"/>
+    <div class="row-fluid">
+        <div class="col">
+            <p class="lead">&copy; Stéphane LE BOURGEOIS - Avril 2022.</p>
+        </div>
+    </div>
+    <br/>
+    <a class="back_link" href="{% url 'index' %}">Retour à l'accueil</a>
+</div>
+{% endblock %}

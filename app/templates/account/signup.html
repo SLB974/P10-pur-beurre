@@ -1,0 +1,96 @@
+{% extends "base.html"  %}
+
+{% block content %}
+
+<!-- Masthead-->
+<header class="masthead">
+  <div class="container px-4 px-lg-5 h-100">
+    <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+      <div class="col-lg-8 align-self-center">
+        <h2 class="text-white font-weight-bold">Création de compte</h2>
+        <hr class="divider"/>
+
+        {% if message %}
+        <h5 class="text-danger">{{message}}</h5>
+        <h5 class="text-danger">{{advice}}</h5>
+        <hr class="divider"/>
+        {% endif %}
+
+
+        <div class="d-flex h-100 align-items-center justify-content-center text-center register_header">
+          <div class="col-lg-6 col-sm-8 align-items-center justify-content-center">
+                
+                        <form method="post" action="{% url 'signup' %}">
+                            {% csrf_token %}
+                
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input type="text" 
+                                class="form-control username" 
+                                placeholder="Nom d'utilisateur" 
+                                name="username" 
+                                aria-label="Username" 
+                                aria-describedby="Username"
+                                required
+                                id="id_username">
+                            </div>
+                
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fas fa-at"></i></span>
+                                <input type="email" 
+                                class="form-control email" 
+                                placeholder="email" 
+                                name="email" 
+                                aria-label="email" 
+                                aria-describedby="email"
+                                required
+                                id="id_email">
+                            </div>
+                
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <input type="password" 
+                                class="form-control psw1" 
+                                placeholder="Mot de passe" 
+                                name="password1" 
+                                aria-label="password1" 
+                                aria-describedby="password1"
+                                required
+                                autocomplete="new-password"
+                                id="id_password1"
+                                pb-role="password">
+                            </div>
+                
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <input type="password" 
+                                class="form-control psw2" 
+                                placeholder="Vérification mot de passe" 
+                                name="password2" 
+                                aria-label="password2" 
+                                aria-describedby="password2"
+                                required
+                                autocomplete="new-password"
+                                id="id_password2"
+                                pb-role="password"
+                                >
+                            </div>
+                
+                            <button type="submit" class="btn btn-xl" id="form_submit">Créer mon compte</button>
+                        </form>
+                        <br/>
+                
+                        <a class="back_link" href="{% url 'account_login' %}">J'ai déjà un compte !</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+{% endblock %}
+
+

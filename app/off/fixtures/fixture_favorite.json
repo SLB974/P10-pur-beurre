@@ -1,0 +1,11 @@
+[
+{
+    "model": "off.favorite",
+    "pk": 1,
+    "fields": {
+        "user_id": 1,
+        "product_id": 1,
+        "replacement_id": 2
+    }
+}
+]

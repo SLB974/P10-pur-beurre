@@ -1,0 +1,16 @@
+{
+    "_id": "3019081239640",
+    "product_name_fr": "Brie",
+    "brands": "Président",
+    "nutrition_grade_fr": "b",
+    "image_front_url": "https://some_image.jpg",
+    "url":"www.some_url.com",
+    "nutriments": {
+        "carbohydrates": 0.3,
+        "energy-kcal": 109,
+        "fat": 1,
+        "proteins": 25,
+        "sodium": 0.4,
+        "fiber":1
+    }
+}
