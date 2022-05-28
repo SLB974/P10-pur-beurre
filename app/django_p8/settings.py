@@ -14,28 +14,17 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
-from .config.settings import BDD_PASSW, DEBUG, SECRET_KEY
-
-# import dj_database_url
-
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
+SECRET_KEY = os.environ.get("SECRET_KEY")
+DEBUG = int(os.environ.get("DEBUG", default=0))
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "django-insecure-t46%tfpu&dh868*%$f_cl-!5t1qiv=ycwbv)l*ud&@t6^%20p%"
+hosts = os.environ.get("DJANGO_ALLOWED_HOSTS", default = None)
+if hosts:
+    ALLOWED_HOSTS = hosts.split(" ")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-
-ALLOWED_HOSTS = ["pur-beurre-974.herokuapp.com","127.0.0.1",
-                 "testserver", "localhost", "whitenoise.runserver_nostalgic"]
-
-
+# setting up https
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 
 # Application definition
@@ -95,19 +84,14 @@ WSGI_APPLICATION = "django_p8.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "nutella",
-        "USER": "slb",
-        "PASSWORD": BDD_PASSW,
-        "HOST": "localhost",
-        "PORT": "",
+        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": os.environ.get("SQL_DATABASE", BASE_DIR + "/db.sqlite3"),
+        "USER": os.environ.get("SQL_USER", "user"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+        "HOST": os.environ.get("SQL_HOST", "localhost"),
+        "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
-
-# db_from_env = dj_database_url.config(conn_max_age=600)
-# DATABASES["default"].update(db_from_env)
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -147,11 +131,8 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
-STATICFILES_DIR=(
-    os.path.join(BASE_DIR, 'static')
-)
-STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
-# STATIC_ROOT = [BASE_DIR / "static"]
+MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
+MEDIA_URL = "/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -182,6 +163,6 @@ ACCOUNT_FORMS = {
 }
 
 # Configure Django App for Heroku.
-import django_heroku
+# import django_heroku
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
