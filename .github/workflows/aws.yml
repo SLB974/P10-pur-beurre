@@ -46,6 +46,12 @@ jobs:
         echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.prod.db
         echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env.prod.db
 
+    - name: Create .env.prod.proxy-companion
+      run: |
+        touch .env.prod.proxy-companion
+        echo DEFAULT_EMAIL=${{ secrets.DEFAULT_EMAIL }} >> .env.prod.proxy-companion
+        echo NGINX_PROXY_CONTAINER=${{ secrets.NGINX_PROXY_CONTAINER }} >> .env.prod.proxy-companion
+
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
