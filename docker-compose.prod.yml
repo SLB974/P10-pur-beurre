@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile.prod
     image: 059174316316.dkr.ecr.eu-west-3.amazonaws.com/pur_beurre:web
     command: gunicorn django_p8.wsgi:application --bind 0.0.0.0:8000
+    restart: always
     volumes:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
@@ -14,15 +15,6 @@ services:
       - 8000
     env_file:
       - ./.env.prod
-    depends_on:
-      - db
-
-  db:
-    image: postgres:13.0-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - ./.env.prod.db
   nginx-proxy:
     container_name: nginx-proxy
     build: nginx
@@ -55,7 +47,6 @@ services:
       - nginx-proxy
 
 volumes:
-  postgres_data:
   static_volume:
   media_volume:
   certs:

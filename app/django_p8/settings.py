@@ -14,6 +14,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get("SECRET_KEY", default="changeme")
 DEBUG = int(os.environ.get("DEBUG", default=0))
@@ -161,7 +164,10 @@ ACCOUNT_FORMS = {
     'signup': 'users.forms.RegisterForm'
 }
 
-# Configure Django App for Heroku.
-# import django_heroku
+snetry_sdk.init(
+    dsn="https://dfe6351a70a444b3a57edb8901ce1adb@o1259826.ingest.sentry.io/6435066",
+    integrations =[DjangoIntegration()],
 
-# django_heroku.settings(locals())
+    traces_sample_rate=1.0,
+    send_default_pii=True
+)
