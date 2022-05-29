@@ -164,7 +164,7 @@ ACCOUNT_FORMS = {
     'signup': 'users.forms.RegisterForm'
 }
 
-snetry_sdk.init(
+sentry_sdk.init(
     dsn="https://dfe6351a70a444b3a57edb8901ce1adb@o1259826.ingest.sentry.io/6435066",
     integrations =[DjangoIntegration()],
 
