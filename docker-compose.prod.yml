@@ -40,6 +40,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     depends_on:
       - web
+      
   nginx-proxy-letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
     env_file:

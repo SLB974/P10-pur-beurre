@@ -36,15 +36,15 @@ class TestNutellaStandardViews(TestCase):
         response = self.client.get(reverse('product', args=[1]))
         self.assertTemplateUsed(response, 'nutella/product.html')
 
-    def test_product_search_response(self):
-        response = self.client.get(reverse('product_search'), {
-            "home_search": "pizza"})
-        self.assertEqual(response.status_code, 200)
+    # def test_product_search_response(self):
+    #     response = self.client.get(reverse('product_search'), {
+    #         "home_search": "pizza"})
+    #     self.assertEqual(response.status_code, 200)
 
-    def test_product_search_renders_proper_template(self):
-        response = self.client.get(reverse('product_search'), {
-            "home_search": "pizza"})
-        self.assertTemplateUsed(response, 'nutella/product_search.html')
+    # def test_product_search_renders_proper_template(self):
+    #     response = self.client.get(reverse('product_search'), {
+    #         "home_search": "pizza"})
+    #     self.assertTemplateUsed(response, 'nutella/product_search.html')
 
     def test_search_replacement_view_response(self):
         response = self.client.get(reverse('product_replacement', args=[1]))

@@ -15,8 +15,7 @@ import os
 from pathlib import Path
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY", default="changeme")
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
 hosts = os.environ.get("DJANGO_ALLOWED_HOSTS", default = None)
