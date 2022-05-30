@@ -36,7 +36,7 @@ def product(request, pk):
 
 def search_product(request):
 
-    logger.info('New search'.exc_info=True, extra={
+    logger.info('New search', exc_info=True, extra={
         'request':request,
     })
 
