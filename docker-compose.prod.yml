@@ -6,7 +6,7 @@ services:
       context: ./app
       dockerfile: Dockerfile.prod
     image: 059174316316.dkr.ecr.eu-west-3.amazonaws.com/pur_beurre:web
-    command: gunicorn django_p8.wsgi:application --bind 0.0.0.0:8000
+    command: newrelic-admin run-program gunicorn django_p8.wsgi:application --bind 0.0.0.0:8000
     restart: always
     volumes:
       - static_volume:/home/app/web/staticfiles

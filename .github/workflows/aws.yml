@@ -43,13 +43,7 @@ jobs:
         echo VIRTUAL_PORT=${{ secrets.VIRTUAL_PORT }} >> .env.prod
         echo VARIABLE=${{ secrets.VARIABLE }} >> .env.prod
         echo LETSENCRYPT_HOST=${{ secrets.LETSENCRYPT_HOST }} >> .env.prod
-    
-    - name: Create .env.prod.db file
-      run: |
-        touch .env.prod.db
-        echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env.prod.db
-        echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env.prod.db
-        echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env.prod.db
+        echo NEW_RELIC_CONFIG_FILE=${{ secrets.NEW_RELIC_CONFIG_FILE }} >> .env.prod
 
     - name: Create .env.prod.proxy-companion
       run: |
