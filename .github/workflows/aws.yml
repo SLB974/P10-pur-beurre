@@ -43,7 +43,7 @@ jobs:
         echo VIRTUAL_PORT=${{ secrets.VIRTUAL_PORT }} >> .env.prod
         echo VARIABLE=${{ secrets.VARIABLE }} >> .env.prod
         echo LETSENCRYPT_HOST=${{ secrets.LETSENCRYPT_HOST }} >> .env.prod
-        echo NEW_RELIC_CONFIG_FILE=${{ secrets.NEW_RELIC_CONFIG_FILE }} >> .env.prod
+        echo license_key = ${{ secrets.NEW_RELIC_LICENSE_KEY }} >> newrelic.ini
 
     - name: Create .env.prod.proxy-companion
       run: |

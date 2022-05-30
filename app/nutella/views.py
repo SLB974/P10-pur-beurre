@@ -1,9 +1,11 @@
 """Module providing views to app nutella"""
+import logging
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from off.models import Favorite, Product
 
+logger = logging.getLogger(__name__)
 
 def nutriscore(score):
     
@@ -33,6 +35,11 @@ def product(request, pk):
     return render(request,'nutella/product.html', context)
 
 def search_product(request):
+
+    logger.info('New search'.exc_info=True, extra={
+        'request':request,
+    })
+
     """search view for index search"""
     search_term = request.GET.get('home_search')
     
