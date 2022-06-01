@@ -136,3 +136,8 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+.gitsecret/keys/random_seed
+!*.secret
+newrelic.ini
+.gitsecret/keys/random_seed
+!*.secret
