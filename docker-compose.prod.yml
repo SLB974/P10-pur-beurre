@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   web:
+    container_name: web
     build:
       context: ./app
       dockerfile: Dockerfile.prod
@@ -18,8 +19,8 @@ services:
   nginx-proxy:
     container_name: nginx-proxy
     build: nginx
-    image: 059174316316.dkr.ecr.eu-west-3.amazonaws.com/pur_beurre:nginx-proxy
     restart: always
+    image: 059174316316.dkr.ecr.eu-west-3.amazonaws.com/pur_beurre:nginx-proxy
     ports:
       - 443:443
       - 80:80
@@ -28,7 +29,7 @@ services:
       - media_volume:/home/app/web/mediafiles
       - certs:/etc/nginx/certs
       - html:/usr/share/nginx/html
-      - vhost:/etc/nginx/whost.d
+      - vhost:/etc/nginx/vhost.d
       - /var/run/docker.sock:/tmp/docker.sock:ro
     depends_on:
       - web
