@@ -17,6 +17,8 @@ from pathlib import Path
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
+import raven
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get("SECRET_KEY", default="changeme")
 DEBUG = int(os.environ.get("DEBUG", default=0))
@@ -164,10 +166,66 @@ ACCOUNT_FORMS = {
     'signup': 'users.forms.RegisterForm'
 }
 
-sentry_sdk.init(
-    dsn="https://dfe6351a70a444b3a57edb8901ce1adb@o1259826.ingest.sentry.io/6435066",
-    integrations =[DjangoIntegration()],
+# sentry_sdk.init(
+#     dsn="https://dfe6351a70a444b3a57edb8901ce1adb@o1259826.ingest.sentry.io/6435066",
+#     integrations =[DjangoIntegration()],
 
-    traces_sample_rate=1.0,
-    send_default_pii=True
-)
+#     traces_sample_rate=1.0,
+#     send_default_pii=True
+# )
+
+INSTALLED_APPS += [
+    'raven.contrib.django.raven_compat',
+]
+
+
+RAVEN_CONFIG = {
+    'dsn': 'https://dfe6351a70a444b3a57edb8901ce1adb@o1259826.ingest.sentry.io/6435066' # caution replace by your own!!
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    # 'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'root': {
+        'level': 'INFO', # WARNING by default. Change this to capture more than warnings.
+        'handlers': ['sentry'],
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s '
+                      '%(process)d %(thread)d %(message)s'
+        },
+    },
+    'handlers': {
+        'sentry': {
+            'level': 'INFO', # To capture more than ERROR, change to WARNING, INFO, etc.
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+            'tags': {'custom-tag': 'x'},
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'raven': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'sentry.errors': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+    },
+}
