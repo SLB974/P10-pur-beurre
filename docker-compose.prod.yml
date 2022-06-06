@@ -16,6 +16,10 @@ services:
       - 8000
     env_file:
       - ./.env.prod
+    environment:
+      - NEW_RELIC_CONFIG_FILE=/app/newrelic.ini
+      - NEW_RELIC_APP_NAME="pur beurre"
+
   nginx-proxy:
     container_name: nginx-proxy
     build: nginx
@@ -46,6 +50,21 @@ services:
       - acme:/etc/acme.sh
     depends_on:
       - nginx-proxy
+
+  cron-task:
+    container_name: crontab
+    context: ./cron
+    dockerfile: ./cron/Dockerfile
+    build:
+    restart: always
+
+  # new_relic:
+  #   container_name: new_relic
+  #   context: ./new_relic
+  #   dockerfile: ./new_relic/Dockerfile
+  #   build: python_newrelic:latest
+  #   env_file:
+  #     - ./.env.newrelic
 
 volumes:
   static_volume:

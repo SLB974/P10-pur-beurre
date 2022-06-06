@@ -1,0 +1,1 @@
+0 2 * * 0 docker exec web python3 manage.py fetchdata
