@@ -56,23 +56,23 @@ jobs:
         NEW_RELIC_LICENSE_KEY: ${{ secrets.NEW_RELIC_LICENSE_KEY }}
       run: |
         touch new_relic/newrelic.ini
-        echo "[newrelic]" >> newrelic/newrelic.in
-        echo "distributed_tracing.enabled = true" >> newrelic/newrelic.in
-        echo "monitor_mode = true" >> newrelic/newrelic.in
-        echo "log_level = info" >> newrelic/newrelic.in
-        echo "ssl = true" >> newrelic/newrelic.in
-        echo "high_security = false" >> newrelic/newrelic.in
-        echo "transaction_tracer.enabled = true" >> newrelic/newrelic.in
-        echo "transaction_tracer.transaction_threshold = apdex_f" >> newrelic/newrelic.in
-        echo "transaction_tracer.record_sql = obfuscated" >> newrelic/newrelic.in
-        echo "transaction_tracer.stack_trace_threshold = 0.5" >> newrelic/newrelic.in
-        echo "transaction_tracer.explain_enabled = true" >> newrelic/newrelic.in
-        echo "transaction_tracer.explain_threshold = 0.5" >> newrelic/newrelic.in
-        echo "transaction_tracer.function_trace =" >> newrelic/newrelic.in
-        echo "error_collector.enabled = true" >> newrelic/newrelic.in
-        echo "error_collector.ignore_errors =" >> newrelic/newrelic.in
-        echo "browser_monitoring.auto_instrument = true" >> newrelic/newrelic.in
-        echo "thread_profiler.enabled = true" >> newrelic/newrelic.in
+        echo "[newrelic]" >> new_relic/newrelic.ini
+        echo "distributed_tracing.enabled = true" >> new_relic/newrelic.ini
+        echo "monitor_mode = true" >> new_relic/newrelic.ini
+        echo "log_level = info" >> new_relic/newrelic.ini
+        echo "ssl = true" >> new_relic/newrelic.ini
+        echo "high_security = false" >> new_relic/newrelic.ini
+        echo "transaction_tracer.enabled = true" >> new_relic/newrelic.ini
+        echo "transaction_tracer.transaction_threshold = apdex_f" >> new_relic/newrelic.ini
+        echo "transaction_tracer.record_sql = obfuscated" >> new_relic/newrelic.ini
+        echo "transaction_tracer.stack_trace_threshold = 0.5" >> new_relic/newrelic.ini
+        echo "transaction_tracer.explain_enabled = true" >> new_relic/newrelic.ini
+        echo "transaction_tracer.explain_threshold = 0.5" >> new_relic/newrelic.ini
+        echo "transaction_tracer.function_trace =" >> new_relic/newrelic.ini
+        echo "error_collector.enabled = true" >> new_relic/newrelic.ini
+        echo "error_collector.ignore_errors =" >> new_relic/newrelic.ini
+        echo "browser_monitoring.auto_instrument = true" >> new_relic/newrelic.ini
+        echo "thread_profiler.enabled = true" >> new_relic/newrelic.ini
 
     - name: Run Tests
       env:
