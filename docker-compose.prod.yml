@@ -55,7 +55,7 @@ services:
     container_name: crontab
     context: ./cron
     dockerfile: ./cron/Dockerfile
-    build:
+    build: ubuntu:latest
     restart: always
 
   # new_relic:
