@@ -51,13 +51,6 @@ services:
     depends_on:
       - nginx-proxy
 
-  cron-task:
-    container_name: crontab
-    context: ./cron
-    dockerfile: ./cron/Dockerfile
-    build: ubuntu:latest
-    restart: always
-
   # new_relic:
   #   container_name: new_relic
   #   context: ./new_relic

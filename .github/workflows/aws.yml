@@ -50,6 +50,29 @@ jobs:
         echo DEFAULT_EMAIL=${{ secrets.DEFAULT_EMAIL }} >> .env.prod.proxy-companion
         echo NGINX_PROXY_CONTAINER=${{ secrets.NGINX_PROXY_CONTAINER }} >> .env.prod.proxy-companion
 
+    - name: Create newrelic.ini file
+      env:
+        NEW_RELIC_APP_NAME: ${{ secrets.NEW_RELIC_APP_NAME }}
+        NEW_RELIC_LICENSE_KEY: ${{ secrets.NEW_RELIC_LICENSE_KEY }}
+      run: |
+        touch new_relic/newrelic.ini
+        echo "[newrelic]" >> newrelic/newrelic.in
+        echo "distributed_tracing.enabled = true" >> newrelic/newrelic.in
+        echo "monitor_mode = true" >> newrelic/newrelic.in
+        echo "log_level = info" >> newrelic/newrelic.in
+        echo "ssl = true" >> newrelic/newrelic.in
+        echo "high_security = false" >> newrelic/newrelic.in
+        echo "transaction_tracer.enabled = true" >> newrelic/newrelic.in
+        echo "transaction_tracer.transaction_threshold = apdex_f" >> newrelic/newrelic.in
+        echo "transaction_tracer.record_sql = obfuscated" >> newrelic/newrelic.in
+        echo "transaction_tracer.stack_trace_threshold = 0.5" >> newrelic/newrelic.in
+        echo "transaction_tracer.explain_enabled = true" >> newrelic/newrelic.in
+        echo "transaction_tracer.explain_threshold = 0.5" >> newrelic/newrelic.in
+        echo "transaction_tracer.function_trace =" >> newrelic/newrelic.in
+        echo "error_collector.enabled = true" >> newrelic/newrelic.in
+        echo "error_collector.ignore_errors =" >> newrelic/newrelic.in
+        echo "browser_monitoring.auto_instrument = true" >> newrelic/newrelic.in
+        echo "thread_profiler.enabled = true" >> newrelic/newrelic.in
 
     - name: Run Tests
       env:
