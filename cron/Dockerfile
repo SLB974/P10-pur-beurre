@@ -9,7 +9,7 @@ COPY fetchdata-weekly-crontab /etc/cron.d/fetchdata-weekly-crontab
 RUN chmod 0644 /etc/cron.d/fetchdata-weekly-crontab
 
 # reference cron task to cron daemon
-RUN crontab /etc/cron/fetchdata-weekly-crontab
+RUN crontab /etc/cron.d/fetchdata-weekly-crontab
 
 #
 ENTRYPOINT ["cron", "-f"]
