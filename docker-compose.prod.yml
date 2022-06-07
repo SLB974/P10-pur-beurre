@@ -48,6 +48,9 @@ services:
     depends_on:
       - nginx-proxy
 
+  cron:
+    build: .
+    
 volumes:
   static_volume:
   media_volume:
