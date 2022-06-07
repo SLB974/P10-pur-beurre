@@ -47,10 +47,12 @@ services:
       - acme:/etc/acme.sh
     depends_on:
       - nginx-proxy
+    restart: always
 
   cron:
     container_name: cronjob
     build: ./cron
+    restart: always
     
 volumes:
   static_volume:
