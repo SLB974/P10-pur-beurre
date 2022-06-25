@@ -1,7 +1,7 @@
 """Nutella views tests"""
 
 from django.contrib.auth import get_user_model
-from django.test import Client, TestCase
+from django.test import Client, TestCase, TransactionTestCase
 from django.urls import reverse
 from nutella.views import nutriscore
 from off.models import Favorite
@@ -36,14 +36,13 @@ class TestNutellaStandardViews(TestCase):
         response = self.client.get(reverse('product', args=[1]))
         self.assertTemplateUsed(response, 'nutella/product.html')
 
-    # def test_product_search_response(self):
-    #     response = self.client.get(reverse('product_search'), {
-    #         "home_search": "pizza"})
-    #     self.assertEqual(response.status_code, 200)
+    def test_product_search_response(self):
+        response = self.client.get(reverse('product_search'),{"home_search": "poisson", "page":1})
+        self.assertEqual(response.status_code, 200)
 
     # def test_product_search_renders_proper_template(self):
     #     response = self.client.get(reverse('product_search'), {
-    #         "home_search": "pizza"})
+    #         "home_search": "pizza", "page":1})
     #     self.assertTemplateUsed(response, 'nutella/product_search.html')
 
     def test_search_replacement_view_response(self):
