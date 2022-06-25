@@ -1,0 +1,41 @@
+<div class="d-inline-flex row-fluid pagination col-12 text-center justify-content-end position-fixed">
+
+    {% if product_list.has_previous %}
+        <div class="d-inline-flex">
+            <a class="page-link active" href="?page=1&home_search={{ search_term }}">
+                <i class="chevron fa-solid fa-angles-left"></i>
+            </a>
+            <a class="page-link active" href="?page={{ product_list.previous_page_number }}&home_search={{ search_term }}">
+                <i class="chevron fa-solid fa-angle-left"></i>
+            </a>
+        </div>
+    {% else %}
+        <div class="d-inline-flex disabled">
+            <a class="page-link disabled" href=""><i class="chevron fa-solid fa-angles-left"></i></a>
+            <a class="page-link disabled" href=""><i class="chevron fa-solid fa-angle-left"></i></a>
+        </div>
+    {% endif %}
+
+    <div class="page-link disabled pages">{{ product_list.number }}/{{ product_list.paginator.num_pages }}</div>
+    
+    {% if product_list.has_next %}
+        <div class="d-inline-flex">
+            <a class="page-link active" href="?page={{ product_list.next_page_number }}&home_search={{ search_term }}">
+                <i class="chevron fa-solid fa-angle-right"></i>
+            </a>
+            <a class="page-link active" href="?page={{ product_list.paginator.num_pages }}&home_search={{ search_term }}">
+                <i class="chevron fa-solid fa-angles-right"></i>
+            </a>
+        </div>
+    {% else %}
+        <div class="d-inline-flex">
+            <a class="page-link disabled" href="">
+                <i class="chevron fa-solid fa-angle-right"></i>
+            </a>
+            <a class="page-link disabled" href="">
+                <i class="chevron fa-solid fa-angles-right"></i>
+            </a>
+        </div>
+
+    {% endif %}
+</div>
