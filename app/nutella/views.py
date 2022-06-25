@@ -1,5 +1,6 @@
 """Module providing views to app nutella"""
 import logging
+from sqlite3 import OperationalError
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -44,32 +45,30 @@ def search_product(request):
 
     search_term = request.GET.get('home_search')
     
-    result = Product.objects.filter(product__search=search_term).order_by('product')
+    page = request.GET.get('page', 1)
+    
+    print('ici page est ' + str(page))
+    
+    result = Product.objects.filter(product__icontains=search_term).order_by('product')
 
     paginator = Paginator(result, per_page=12)
-
-    page = request.GET.get('page', 1)
-
+    
     try:
         page_object = paginator.get_page(page)
-        page_object.adjusted_elided_pages = paginator.get_elided_page_range(page)
 
     except EmptyPage:
 
         page_object = paginator.get_page(paginator.num_pages)
-        page_object.adjusted_elided_pages = paginator.get_elided_page_range(paginator.num_pages)
         
-    except PageNotAnInteger:
+    except OperationalError:
         
         page_object = paginator.get_page(1)
-        page_object.adjusted_elided_pages = paginator.get_elided_page_range(1)
-
-
+        
+       
     context = {
         'product_list':page_object,
         'search_term': search_term,
         'message': None,
-        # 'page_obj': page_object
     }
     
     if result.count() ==0:
