@@ -2,6 +2,7 @@
 import logging
 
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import redirect, render
 from off.models import Favorite, Product
 
@@ -35,20 +36,40 @@ def product(request, pk):
     return render(request,'nutella/product.html', context)
 
 def search_product(request):
+    """search view for index search"""
 
     logger.info('New search', exc_info=True, extra={
         'request':request,
     })
 
-    """search view for index search"""
     search_term = request.GET.get('home_search')
     
     result = Product.objects.filter(product__search=search_term).order_by('product')
-    
+
+    paginator = Paginator(result, per_page=12)
+
+    page = request.GET.get('page', 1)
+
+    try:
+        page_object = paginator.get_page(page)
+        page_object.adjusted_elided_pages = paginator.get_elided_page_range(page)
+
+    except EmptyPage:
+
+        page_object = paginator.get_page(paginator.num_pages)
+        page_object.adjusted_elided_pages = paginator.get_elided_page_range(paginator.num_pages)
+        
+    except PageNotAnInteger:
+        
+        page_object = paginator.get_page(1)
+        page_object.adjusted_elided_pages = paginator.get_elided_page_range(1)
+
+
     context = {
-        'product_list':result,
+        'product_list':page_object,
         'search_term': search_term,
-        'message': None
+        'message': None,
+        # 'page_obj': page_object
     }
     
     if result.count() ==0:
@@ -64,7 +85,7 @@ def search_product(request):
 def search_replacement(request, pk):
     """search view for product replacement"""
     context={
-        'result_list':None,
+        'product_list':None,
         'product_name':None,
         'product_score':None,
         'product_image': None,
@@ -84,7 +105,6 @@ def search_replacement(request, pk):
     
     global_queryset = global_queryset.filter(score__lt=base_product.score).order_by('score', 'product')
 
-    context['result_list'] = global_queryset
     
     if global_queryset.count() ==0:
         context['message']=("Je n'ai trouvé aucun produit dont le Nutriscore est meilleur que celui de "
@@ -95,6 +115,28 @@ def search_replacement(request, pk):
     
     else:
         context['message']="J'ai trouvé " + str(global_queryset.count()) + ' produits bien meilleurs pour votre santé.'
+
+    paginator = Paginator(global_queryset, per_page=12)
+
+    page = request.GET.get('page', 1)
+    
+    try:
+        page_object = paginator.get_page(page)
+        page_object.adjusted_elided_pages = paginator.get_elided_page_range(page)
+
+
+    except EmptyPage:
+
+        page_object = paginator.get_page(paginator.num_pages)
+        page_object.adjusted_elided_pages = paginator.get_elided_page_range(paginator.num_pages)
+        
+    except PageNotAnInteger:
+        
+        page_object = paginator.get_page(1)
+        page_object.adjusted_elided_pages = paginator.get_elided_page_range(1)
+    
+
+    context['product_list'] = page_object
 
     return render(request, 'nutella/product_replacement.html', context)
 
