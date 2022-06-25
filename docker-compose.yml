@@ -21,6 +21,6 @@ services:
       - POSTGRES_USER=slb
       - POSTGRES_PASSWORD=jade
       - POSTGRES_DB=nutella_dev
-      
+     
 volumes:
   postgres_data:

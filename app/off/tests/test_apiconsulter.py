@@ -37,7 +37,7 @@ class ApiConsulterTestCase(TestCase):
         self.assertEqual(Category.objects.count(),1)
         
     def test_product_should_have_ten_records(self):
-        self.assertEqual(Product.objects.count(),10)
+        self.assertEqual(Product.objects.count(),100)
     
     def test_db_clean_empties_database(self):
         self.consulter.db_clean()
