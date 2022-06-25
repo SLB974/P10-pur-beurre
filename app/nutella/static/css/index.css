@@ -4,13 +4,12 @@
   --nutriscoreC: #fbcb29;
   --nutriscoreD: #fb7f1d;
   --nutriscoreE: #f13c1d;
-  --title_font: 'Open Sans', sans-serif;
-  --base_font: 'Scope One', sans-serif;
+  --title_font: "Open Sans", sans-serif;
+  --base_font: "Scope One", sans-serif;
 }
 
 body {
   min-width: 320px;
-  background: -webkit-gradient(linear, left top, right top, from(var(--bs-biscuit)), to(var(--bs-caramel)));
   background: linear-gradient(90deg, var(--bs-biscuit), var(--bs-caramel));
   font: var(--base_font);
 }
@@ -146,5 +145,4 @@ h3,
 h4,
 h5 {
   font-family: "Open Sans", sans-serif;
-}
-/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
