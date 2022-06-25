@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   web:
+    container_name: web
     build: ./app
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -12,6 +13,7 @@ services:
       - ./.env.dev
 
   db:
+    container_name: datab
     image: postgres:13.0-alpine
     volumes:
       - postgres_data:/var/lib/postgres/data/

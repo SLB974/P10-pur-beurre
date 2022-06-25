@@ -165,3 +165,20 @@ class ApiConsulter:
                 
             except ValueError:
                 pass
+
+    def db_fetch(self):
+        """ Empties db and insert records. """
+       
+        self.db_clean()
+        
+        last = self.save_category("pizza")
+            
+        response = self.get_results("pizza")
+            
+        bulk = self.bulk_fabrik(response['products'], last)
+            
+        try:
+            Product.objects.bulk_create(bulk)
+            
+        except ValueError:
+            pass

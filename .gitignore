@@ -141,3 +141,9 @@ GitHub.sublime-settings
 newrelic.ini
 .gitsecret/keys/random_seed
 !*.secret
+*.scss
+*.map
+*/__init__.py
+*.min.css
+fetchtry.py
+*functional_tests
