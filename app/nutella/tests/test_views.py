@@ -44,6 +44,15 @@ class TestNutellaStandardViews(TestCase):
         response = self.client.get(reverse('product_search'), {
             "home_search": "pizza", "page":1})
         self.assertTemplateUsed(response, 'nutella/product_search.html')
+        
+    def test_product_search_page_over_should_return_last_page(self):
+        response= self.client.get(reverse('product_search'),
+                                  {"home_search":"pizza", "page":999})
+        paginator = response.context['product_list'].paginator
+        actual = response.context['product_list'].number
+        expected = paginator.get_page(paginator.num_pages).number
+        self.assertEquals(expected, actual)
+        
 
     def test_search_replacement_view_response(self):
         response = self.client.get(reverse('product_replacement', args=[1]))
@@ -52,6 +61,14 @@ class TestNutellaStandardViews(TestCase):
     def test_search_replacement_view_renders_proper_template(self):
         response = self.client.get(reverse('product_replacement', args=[1]))
         self.assertTemplateUsed(response, 'nutella/product_replacement.html')
+        
+    def test_product_replacement_page_over_should_return_last_page(self):
+        response= self.client.get(reverse('product_replacement', args=[1]),
+                                  {"page":999})
+        paginator = response.context['product_list'].paginator
+        actual = response.context['product_list'].number
+        expected = paginator.get_page(paginator.num_pages).number
+        self.assertEquals(expected, actual)
 
     def test_legal_notice_view_response(self):
         response = self.client.get(reverse('legal_notice'))

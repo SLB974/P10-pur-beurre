@@ -47,8 +47,7 @@ def search_product(request):
     
     page = request.GET.get('page', 1)
     
-    print('ici page est ' + str(page))
-    
+  
     result = Product.objects.filter(product__icontains=search_term).order_by('product')
 
     paginator = Paginator(result, per_page=12)
@@ -60,11 +59,6 @@ def search_product(request):
 
         page_object = paginator.get_page(paginator.num_pages)
         
-    except OperationalError:
-        
-        page_object = paginator.get_page(1)
-        
-       
     context = {
         'product_list':page_object,
         'search_term': search_term,
